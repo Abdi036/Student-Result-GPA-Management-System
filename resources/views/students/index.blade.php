@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('content')
@@ -20,9 +19,7 @@
                         <td class="py-2 px-4">{{ $student->student_id }}</td>
                         <td class="py-2 px-4">{{ $student->calculateGPA() }}</td>
                         <td class="py-2 px-4">
-                            @foreach ($student->scores as $score)
-                                {{ $score->course->name }}: {{ $score->score }} ({{ $student->getLetterGrade($score->score) }})<br>
-                            @endforeach
+                            <a href="{{ route('students.show', $student->id) }}" class="text-blue-500 hover:underline">View Details</a>
                         </td>
                     </tr>
                 @endforeach

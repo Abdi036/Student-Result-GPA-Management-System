@@ -47,10 +47,16 @@ class Student extends Model
     // Get letter grade
     public function getLetterGrade($score)
     {
-        if ($score >= 90) return 'A';
-        if ($score >= 80) return 'B';
-        if ($score >= 70) return 'C';
-        if ($score >= 60) return 'D';
+        if ($score >= 90) return 'A+';
+        if ($score < 90 && $score >= 85) return 'A';
+        if ($score >= 80 && $score < 85) return 'A-';
+        if ($score >= 75 && $score < 80) return 'B+';
+        if ($score >= 70 && $score < 75) return 'B';
+        if ($score >= 65 && $score < 70) return 'B-';
+        if ($score >= 60 && $score < 65) return 'C+';
+        if ($score >= 50 && $score < 60) return 'C';
+        if ($score >= 45 && $score < 50) return 'C-';
+        if ($score >= 40 && $score < 45) return 'D';
         return 'F';
     }
 }

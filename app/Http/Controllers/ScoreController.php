@@ -28,6 +28,6 @@ class ScoreController extends Controller
 
         Score::create($request->all());
 
-        return redirect()->route('students.index')->with('success', 'Score added successfully.');
+        return back()->with('success', 'Score added successfully.');
     }
 }

@@ -35,4 +35,10 @@ class StudentController extends Controller
 
         return redirect()->route('students.index')->with('success', 'Student added successfully.');
     }
+    // Show a single student
+    public function show(Student $student)
+    {
+        $student->load('scores.course');
+        return view('students.show', compact('student'));
+    }
 }

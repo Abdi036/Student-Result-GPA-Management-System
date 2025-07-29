@@ -25,6 +25,9 @@ Route::middleware("auth")->controller(StudentController::class)->group(function 
 Route::middleware("auth")->controller(CourseController::class)->group(function () {
     Route::get('/courses/create',  'create')->name('courses.create');
     Route::post('/courses',  'store')->name('courses.store');
+    Route::get("/courses","index")->name("courses.index");
+    Route::patch("/courses/{course}", "update")->name("courses.update");
+    Route::delete("/courses/{course}", "destroy")->name("courses.destroy");
 });
 
 Route::middleware("auth")->controller(ScoreController::class)->group(function () {

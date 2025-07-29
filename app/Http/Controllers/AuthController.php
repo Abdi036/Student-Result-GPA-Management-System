@@ -29,23 +29,23 @@ class AuthController extends Controller
     }
 
     public function login(Request $request)
-  {
-      $validated = $request->validate([
-        'email' => 'required|email',
-        'password' => 'required|string|min:8',
-      ]);
+    {
+        $validated = $request->validate([
+          'email' => 'required|email',
+          'password' => 'required|string|min:8',
+        ]);
 
-      if (Auth::attempt($validated)) {
-        $request->session()->regenerate();
+        if (Auth::attempt($validated)) {
+          $request->session()->regenerate();
 
-        return redirect()->route('students.index');
-      }
+          return redirect()->route('students.index');
+        }
 
-      throw ValidationException::withMessages([
-        'credentials' => 'Wrong credentials',
-      ]);
-  }
-    
+        throw ValidationException::withMessages([
+          'credentials' => 'Wrong credentials',
+        ]);
+    }
+      
     public function signout(Request $request){
         Auth::logout();
         $request->session()->invalidate();

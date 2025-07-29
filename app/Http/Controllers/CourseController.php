@@ -12,6 +12,11 @@ class CourseController extends Controller
         return view('courses.create');
     }
 
+    public function index(){
+        $courses = Course::all();
+        return view("courses.index",['courses'=>$courses]);
+    }
+
     // Store a new course
     public function store(Request $request)
     {
@@ -20,8 +25,40 @@ class CourseController extends Controller
             'credits' => 'required|integer|min:1',
         ]);
 
+        // Check if course already exists (case-insensitive)
+        $exists = Course::whereRaw('LOWER(name) = ?', [strtolower($request->name)])->exists();
+        if ($exists) {
+            return redirect()->back()->withInput()->with('error', 'Course already exists.');
+        }
+
         Course::create($request->all());
 
-        return redirect()->route('students.index')->with('success', 'Course added successfully.');
+        return redirect()->route('courses.index')->with('success', 'Course added successfully.');
+    }
+
+    // edit/update a course
+
+     public function update(Request $request, $id)
+    {
+        $course = Course::findOrFail($id);
+
+        $validated = $request->validate([
+            'name' => 'string|max:255',
+            'credits' => 'integer|min:1',
+        ]);
+
+        $course->update($validated);
+
+        return redirect()->route('courses.index')->with('success', 'Course updated successfully.');
+    }
+
+    // delete a course
+
+    public function destroy($id)
+    {
+        $course = Course::findOrFail($id);
+        $course->delete();
+
+        return redirect()->route('courses.index')->with('success', 'Course deleted successfully.');
     }
 }

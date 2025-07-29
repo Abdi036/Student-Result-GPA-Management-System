@@ -14,4 +14,20 @@
         </div>
         <button type="submit" class="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600">Add Course</button>
     </form>
+
+    <!-- error handling -->
+
+    @if (session('error'))
+        <div id="error-alert" class="bg-red-100 border-l-4 mt-5 border-red-500 text-red-700 p-4 mb-4" role="alert">
+            {{ session('error') }}
+        </div>
+        <script>
+            setTimeout(function() {
+                var alert = document.getElementById('error-alert');
+                if (alert) {
+                    alert.style.display = 'none';
+                }
+            }, 3000);
+        </script>
+    @endif
 @endsection

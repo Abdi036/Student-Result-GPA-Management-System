@@ -1,8 +1,24 @@
-
 @extends('layouts.app')
 
 @section('content')
     <h1 class="text-2xl font-bold text-gray-800 mb-4">Add Student Score</h1>
+
+    @if ($errors->any())
+        <div id="error-alert" class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4" role="alert">
+            <ul class="list-disc pl-5">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        <script>
+            setTimeout(function() {
+                var alert = document.getElementById('error-alert');
+                if (alert) alert.style.display = 'none';
+            }, 3000);
+        </script>
+    @endif
+
     <form action="{{ route('scores.store') }}" method="POST" class="space-y-4">
         @csrf
         <div>

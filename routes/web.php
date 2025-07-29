@@ -20,6 +20,8 @@ Route::middleware("auth")->controller(StudentController::class)->group(function 
     Route::get('/students/create', 'create')->name('students.create');
     Route::post('/students',  'store')->name('students.store');
     Route::get('/students/{student}',  'show')->name('students.show');
+    Route::patch('/students/{student}', 'update')->name('students.update');
+    Route::delete('/students/{student}', 'destroy')->name('students.destroy');
 });
 
 Route::middleware("auth")->controller(CourseController::class)->group(function () {
@@ -34,4 +36,5 @@ Route::middleware("auth")->controller(ScoreController::class)->group(function ()
 
     Route::get('/scores/create', 'create')->name('scores.create');
     Route::post('/scores', 'store')->name('scores.store');
+    Route::patch('/scores/{score}', 'update')->name('scores.update');
 });

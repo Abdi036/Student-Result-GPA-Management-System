@@ -31,6 +31,10 @@ class StudentController extends Controller
             'student_id' => 'required|string|max:10|unique:students',
         ]);
 
+        if (Student::where('student_id', $request->student_id)->exists()) {
+            return redirect()->back()->withErrors(['student_id' => 'This student ID is already taken.']);
+        }
+
         Student::create($request->all());
 
         return redirect()->route('students.index')->with('success', 'Student added successfully.');
@@ -40,5 +44,25 @@ class StudentController extends Controller
     {
         $student->load('scores.course');
         return view('students.show', compact('student'));
+    }
+
+    // Update a student
+    public function update(Request $request, Student $student)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'student_id' => 'required|string|max:10|unique:students,student_id,' . $student->id,
+        ]);
+
+        $student->update($validated);
+
+        return redirect()->route('students.show', $student)->with('success', 'Student updated successfully.');
+    }
+
+    // Delete a student
+    public function destroy(Student $student)
+    {
+        $student->delete();
+        return redirect()->route('students.index')->with('success', 'Student deleted successfully.');
     }
 }

@@ -17,8 +17,8 @@
                     @auth
                         <a href="{{ route('students.create') }}" class="text-gray-600 hover:text-blue-500 font-bold">Add Student</a>
                         <a href="{{ route('courses.create') }}" class="text-gray-600 hover:text-blue-500 font-bold">Add Course</a>
-                        <a href="{{ route('courses.index') }}" class="text-gray-600 hover:text-blue-500 font-bold">All Courses</a>
                         <a href="{{ route('scores.create') }}" class="text-gray-600 hover:text-blue-500 font-bold">Add Score</a>
+                        <a href="{{ route('courses.index') }}" class="text-gray-600 hover:text-blue-500 font-bold">All Courses</a>
                         <form action="{{ route('signout') }}" method="POST" class="inline">
                             @csrf
                             <button type="submit" class="text-gray-600 hover:text-red-500 font-semibold p-2 border-2 border-gray-200 rounded-lg ml-10">Sign Out</button>

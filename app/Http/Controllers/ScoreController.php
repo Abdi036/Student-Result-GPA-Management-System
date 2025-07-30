@@ -17,7 +17,7 @@ class ScoreController extends Controller
         return view('scores.create', compact('students', 'courses'));
     }
 
-    // Store a new score
+    // saving a new score
     public function store(Request $request)
     {
         $request->validate([

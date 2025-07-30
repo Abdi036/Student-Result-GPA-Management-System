@@ -24,8 +24,8 @@
                             <button type="submit" class="text-gray-600 hover:text-red-500 font-semibold p-2 border-2 border-gray-200 rounded-lg ml-10">Sign Out</button>
                         </form>
                     @else
-                        <a href="{{ route('show.login') }}" class="text-gray-600 hover:text-blue-500">Login</a>
-                        <a href="{{ route('show.signup') }}" class="text-gray-600 hover:text-blue-500">Signup</a>
+                        <a href="{{ route('show.login') }}" class="text-gray-600 hover:text-blue-500 border border-gray-200 p-2 rounded-lg font-semibold">Login</a>
+                        <a href="{{ route('show.signup') }}" class="text-gray-600 hover:text-blue-500 border border-gray-200 p-2 rounded-lg font-semibold">Signup</a>
                     @endauth
                 </div>
             </div>

@@ -8,6 +8,7 @@ use App\Http\Controllers\ScoreController;
 
 
 Route::post('/signout', [AuthController::class, 'signout'])->name('signout');
+
 Route::middleware("guest")->controller(AuthController::class)->group(function () {
     Route::get('/signup',  'showSignup')->name('show.signup');
     Route::post('/signup',  'signup')->name('signup');
@@ -33,7 +34,6 @@ Route::middleware("auth")->controller(CourseController::class)->group(function (
 });
 
 Route::middleware("auth")->controller(ScoreController::class)->group(function () {
-
     Route::get('/scores/create', 'create')->name('scores.create');
     Route::post('/scores', 'store')->name('scores.store');
     Route::patch('/scores/{score}', 'update')->name('scores.update');

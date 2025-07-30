@@ -9,13 +9,17 @@ use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
-    public function showSignup(){
+ //  display signup page
+  public function showSignup(){
         return view("auth.signup");
     }
+
+    // display login page
     public function showlogin(){
         return view("auth.login");
     }
 
+    // signup functionality
     public function signup(Request $request){
         $validated = $request->validate([
         'name' => 'required|string|max:255',
@@ -28,6 +32,7 @@ class AuthController extends Controller
       return redirect()->route('students.index');
     }
 
+    // login functionality
     public function login(Request $request)
     {
         $validated = $request->validate([
@@ -45,7 +50,8 @@ class AuthController extends Controller
           'credentials' => 'Wrong credentials',
         ]);
     }
-      
+
+    // signout functionality
     public function signout(Request $request){
         Auth::logout();
         $request->session()->invalidate();

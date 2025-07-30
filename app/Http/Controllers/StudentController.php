@@ -23,7 +23,7 @@ class StudentController extends Controller
         return view('students.create');
     }
 
-    // Store a new student
+    // Storing or creating a new student
     public function store(Request $request)
     {
         $request->validate([
@@ -39,7 +39,8 @@ class StudentController extends Controller
 
         return redirect()->route('students.index')->with('success', 'Student added successfully.');
     }
-    // Show a single student
+
+    // display a single student with details
     public function show(Student $student)
     {
         $student->load('scores.course');

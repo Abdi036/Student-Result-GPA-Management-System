@@ -7,14 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Student extends Model
 {
     protected $fillable = ['name', 'student_id'];
-
     // A student has many scores
     public function scores()
     {
         return $this->hasMany(Score::class);
     }
 
-    // Calculate GPA
+    // Calculate GPA function
     public function calculateGPA()
     {
         $scores = $this->scores()->with('course')->get();

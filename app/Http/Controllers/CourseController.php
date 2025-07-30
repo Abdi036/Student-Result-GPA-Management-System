@@ -12,12 +12,13 @@ class CourseController extends Controller
         return view('courses.create');
     }
 
+    // display all the courses
     public function index(){
         $courses = Course::all();
         return view("courses.index",['courses'=>$courses]);
     }
 
-    // Store a new course
+    // create and save a new course
     public function store(Request $request)
     {
         $request->validate([
@@ -25,7 +26,7 @@ class CourseController extends Controller
             'credits' => 'required|integer|min:1',
         ]);
 
-        // Check if course already exists (case-insensitive)
+        // Check if a course already exists
         $exists = Course::whereRaw('LOWER(name) = ?', [strtolower($request->name)])->exists();
         if ($exists) {
             return redirect()->back()->withInput()->with('error', 'Course already exists.');
@@ -37,7 +38,6 @@ class CourseController extends Controller
     }
 
     // edit/update a course
-
      public function update(Request $request, $id)
     {
         $course = Course::findOrFail($id);
@@ -53,7 +53,6 @@ class CourseController extends Controller
     }
 
     // delete a course
-
     public function destroy($id)
     {
         $course = Course::findOrFail($id);

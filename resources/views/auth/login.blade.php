@@ -17,7 +17,7 @@
             </div>
             <button type="submit"
                 class="w-full bg-black text-white font-bold py-2 rounded-lg shadow hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-400 transition duration-200">
-                Sign In
+                Login
             </button>
 
             <!-- validation errors -->
